@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - Hydra City RP</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="assets/logo.png" alt="Hydra City RP" class="logo-img">
+                    <span class="logo-text">HYDRA CITY RP</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#store" class="nav-link">Loja VIP</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link login-btn">Login</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Section -->
+    <section class="cart-section">
+        <div class="container">
+            <h1 class="cart-title">Seu Carrinho</h1>
+            
+            <div class="cart-container">
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items will be dynamically added here -->
+                </div>
+
+                <div class="cart-summary">
+                    <h2>Resumo do Pedido</h2>
+                    <div class="summary-item">
+                        <span>Subtotal</span>
+                        <span id="subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Desconto</span>
+                        <span id="discount">R$ 0,00</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total</span>
+                        <span id="total">R$ 0,00</span>
+                    </div>
+
+                    <div class="coupon-container">
+                        <input type="text" id="coupon-code" placeholder="Código promocional">
+                        <button class="btn btn-secondary" onclick="applyCoupon()">Aplicar</button>
+                    </div>
+
+                    <button class="btn btn-primary checkout-btn" onclick="checkout()">
+                        <i class="fas fa-lock"></i>
+                        Finalizar Compra
+                    </button>
+
+                    <div class="payment-methods">
+                        <p>Formas de pagamento:</p>
+                        <div class="payment-icons">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                            <i class="fab fa-pix"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty Cart State -->
+            <div class="empty-cart hidden" id="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <h2>Seu carrinho está vazio</h2>
+                <p>Explore nossa loja e encontre os melhores benefícios VIP!</p>
+                <a href="index.html#store" class="btn btn-primary">Ver Loja VIP</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Item Template (Hidden) -->
+    <template id="cart-item-template">
+        <div class="cart-item">
+            <div class="item-image">
+                <i class="fas fa-crown"></i>
+            </div>
+            <div class="item-details">
+                <h3 class="item-name">VIP Gold</h3>
+                <p class="item-description">Pacote VIP com benefícios exclusivos</p>
+            </div>
+            <div class="item-price">R$ 49,90</div>
+            <button class="remove-item" onclick="removeFromCart(this)">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    </template>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkout-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Finalizar Compra</h2>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Para concluir sua compra, acesse nosso Discord:</p>
+                <button class="btn btn-discord" onclick="openDiscord()">
+                    <i class="fab fa-discord"></i>
+                    Acessar Discord
+                </button>
+                <p class="modal-info">Um de nossos atendentes irá auxiliar você com o processo de pagamento.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydra City RP - A cidade onde o caos é organizado</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.png" alt="Hydra City RP" class="logo-img">
+                <span class="logo-text">HYDRA CITY RP</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#store" class="nav-link">Loja VIP</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#updates" class="nav-link">Atualizações</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#how-to-play" class="nav-link">Como Jogar</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link login-btn">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a href="cart.html" class="nav-link cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-video">
+            <video autoplay muted loop>
+                <source src="assets/city-video.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-logo">
+                <h1 class="hero-title">HYDRA CITY RP</h1>
+                <p class="hero-subtitle">A cidade onde o caos é organizado</p>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" id="online-count">247</span>
+                    <span class="stat-label">Jogadores Online</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">15.8K</span>
+                    <span class="stat-label">Membros Discord</span>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="copyServerIP()">
+                    <i class="fas fa-server"></i>
+                    Entrar no Servidor
+                </button>
+                <button class="btn btn-secondary" onclick="openDiscord()">
+                    <i class="fab fa-discord"></i>
+                    Discord
+                </button>
+                <button class="btn btn-accent" onclick="scrollToStore()">
+                    <i class="fas fa-crown"></i>
+                    Comprar VIP
+                </button>
+                <button class="btn btn-outline" onclick="downloadPacks()">
+                    <i class="fas fa-download"></i>
+                    Baixar Pacotes
+                </button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Screenshots Carousel -->
+    <section class="screenshots">
+        <div class="container">
+            <h2 class="section-title">Explore Hydra City</h2>
+            <div class="carousel">
+                <div class="carousel-container" id="carousel">
+                    <div class="carousel-slide">
+                        <img src="assets/screenshot1.jpg" alt="Hydra City Screenshot">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/screenshot2.jpg" alt="Hydra City Screenshot">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/screenshot3.jpg" alt="Hydra City Screenshot">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/screenshot4.jpg" alt="Hydra City Screenshot">
+                    </div>
+                </div>
+                <button class="carousel-btn prev" onclick="prevSlide()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" onclick="nextSlide()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIP Store Section -->
+    <section id="store" class="store">
+        <div class="container">
+            <h2 class="section-title">Loja VIP</h2>
+            <div class="store-grid">
+                <div class="vip-card" data-vip="bronze">
+                    <div class="vip-header">
+                        <i class="fas fa-medal vip-icon bronze"></i>
+                        <h3>VIP Bronze</h3>
+                        <span class="vip-price">R$ 19,90</span>
+                    </div>
+                    <ul class="vip-benefits">
+                        <li><i class="fas fa-check"></i> $50.000 inicial</li>
+                        <li><i class="fas fa-check"></i> Acesso a carros VIP</li>
+                        <li><i class="fas fa-check"></i> Tag no chat</li>
+                        <li><i class="fas fa-check"></i> Prioridade na fila</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="addToCart('vip-bronze', 'VIP Bronze', 19.90)">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+
+                <div class="vip-card featured" data-vip="gold">
+                    <div class="featured-badge">Mais Popular</div>
+                    <div class="vip-header">
+                        <i class="fas fa-crown vip-icon gold"></i>
+                        <h3>VIP Ouro</h3>
+                        <span class="vip-price">R$ 49,90</span>
+                    </div>
+                    <ul class="vip-benefits">
+                        <li><i class="fas fa-check"></i> $150.000 inicial</li>
+                        <li><i class="fas fa-check"></i> Carros exclusivos</li>
+                        <li><i class="fas fa-check"></i> Casa VIP grátis</li>
+                        <li><i class="fas fa-check"></i> Kit de armas</li>
+                        <li><i class="fas fa-check"></i> Comandos especiais</li>
+                    </ul>
+                    <button class="btn btn-accent" onclick="addToCart('vip-gold', 'VIP Ouro', 49.90)">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+
+                <div class="vip-card" data-vip="diamond">
+                    <div class="vip-header">
+                        <i class="fas fa-gem vip-icon diamond"></i>
+                        <h3>VIP Diamante</h3>
+                        <span class="vip-price">R$ 99,90</span>
+                    </div>
+                    <ul class="vip-benefits">
+                        <li><i class="fas fa-check"></i> $500.000 inicial</li>
+                        <li><i class="fas fa-check"></i> Todos os benefícios anteriores</li>
+                        <li><i class="fas fa-check"></i> Helicóptero exclusivo</li>
+                        <li><i class="fas fa-check"></i> Placa personalizada</li>
+                        <li><i class="fas fa-check"></i> Acesso VIP total</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="addToCart('vip-diamond', 'VIP Diamante', 99.90)">
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updates Section -->
+    <section id="updates" class="updates">
+        <div class="container">
+            <h2 class="section-title">Últimas Atualizações</h2>
+            <div class="updates-grid">
+                <div class="update-card">
+                    <div class="update-header">
+                        <div class="update-icon system">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="update-info">
+                            <h3>Sistema de Facções v2.1</h3>
+                            <span class="update-date">15 de Janeiro, 2024</span>
+                        </div>
+                    </div>
+                    <p class="update-description">
+                        Novo sistema de facções com territórios dinâmicos, guerras organizadas e economia balanceada.
+                    </p>
+                    <div class="update-tags">
+                        <span class="tag">Sistema</span>
+                        <span class="tag">Facções</span>
+                    </div>
+                </div>
+
+                <div class="update-card">
+                    <div class="update-header">
+                        <div class="update-icon police">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="update-info">
+                            <h3>Atualização Policial</h3>
+                            <span class="update-date">10 de Janeiro, 2024</span>
+                        </div>
+                    </div>
+                    <p class="update-description">
+                        Novos veículos policiais, sistema de investigação aprimorado e equipamentos táticos.
+                    </p>
+                    <div class="update-tags">
+                        <span class="tag">Polícia</span>
+                        <span class="tag">Veículos</span>
+                    </div>
+                </div>
+
+                <div class="update-card">
+                    <div class="update-header">
+                        <div class="update-icon community">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="update-info">
+                            <h3>Eventos da Comunidade</h3>
+                            <span class="update-date">5 de Janeiro, 2024</span>
+                        </div>
+                    </div>
+                    <p class="update-description">
+                        Novos eventos semanais, competições de drift e torneios de tiro ao alvo.
+                    </p>
+                    <div class="update-tags">
+                        <span class="tag">Comunidade</span>
+                        <span class="tag">Eventos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Play Section -->
+    <section id="how-to-play" class="how-to-play">
+        <div class="container">
+            <h2 class="section-title">Como Jogar</h2>
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Baixe o FiveM</h3>
+                    <p>Instale o FiveM através do site oficial para jogar em servidores modificados do GTA V.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Entre no Discord</h3>
+                    <p>Junte-se ao nosso Discord para receber suporte e ficar por dentro das novidades.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Conecte-se ao Servidor</h3>
+                    <p>Use o IP do servidor para se conectar e começar sua jornada em Hydra City.</p>
+                    <div class="server-ip">
+                        <input type="text" value="connect hydracityrp.com" readonly id="server-ip">
+                        <button onclick="copyServerIP()" class="copy-btn">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Crie seu Personagem</h3>
+                    <p>Customize seu personagem e comece a explorar todas as possibilidades da cidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Hydra City RP</h3>
+                    <p>A melhor experiência de roleplay em português.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#store">Loja VIP</a></li>
+                        <li><a href="#updates">Atualizações</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="#">Como Jogar</a></li>
+                        <li><a href="#">Regras</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Política de Reembolso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Hydra City RP. Todos os direitos reservados.</p>
+                <p>Este servidor não é afiliado à Rockstar Games.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

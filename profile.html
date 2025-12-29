@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Hydra City RP</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="assets/logo.png" alt="Hydra City RP" class="logo-img">
+                    <span class="logo-text">HYDRA CITY RP</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#store" class="nav-link">Loja VIP</a>
+                </li>
+                <li class="nav-item">
+                    <a href="cart.html" class="nav-link cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link logout-btn" onclick="logoutUser()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sair
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name" id="profile-name">Carregando...</h1>
+                    <p class="profile-id" id="profile-id">ID: #000000</p>
+                    <div class="profile-badges">
+                        <span class="badge vip-badge" id="vip-badge">Nenhum VIP</span>
+                        <span class="badge member-badge" id="member-badge">Membro desde: 2024</span>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="btn btn-primary" onclick="editProfile()">
+                        <i class="fas fa-edit"></i>
+                        Editar Perfil
+                    </button>
+                </div>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-tabs">
+                    <button class="tab-btn active" onclick="showTab('overview')">
+                        <i class="fas fa-chart-line"></i>
+                        Visão Geral
+                    </button>
+                    <button class="tab-btn" onclick="showTab('orders')">
+                        <i class="fas fa-shopping-bag"></i>
+                        Pedidos
+                    </button>
+                    <button class="tab-btn" onclick="showTab('settings')">
+                        <i class="fas fa-cog"></i>
+                        Configurações
+                    </button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div class="tab-content active" id="overview-tab">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Status VIP</h3>
+                                <p id="vip-status">Nenhum</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Último Login</h3>
+                                <p id="last-login">Agora</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total Gasto</h3>
+                                <p id="total-spent">R$ 0,00</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Pedidos</h3>
+                                <p id="total-orders">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h2>Atividade Recente</h2>
+                        <div class="activity-list" id="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Conta criada</h4>
+                                    <p>Bem-vindo ao Hydra City RP!</p>
+                                    <span class="activity-time" id="join-time">Agora</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Tab -->
+                <div class="tab-content" id="orders-tab">
+                    <div class="orders-header">
+                        <h2>Histórico de Pedidos</h2>
+                        <button class="btn btn-secondary" onclick="refreshOrders()">
+                            <i class="fas fa-sync"></i>
+                            Atualizar
+                        </button>
+                    </div>
+                    <div class="orders-list" id="orders-list">
+                        <div class="empty-state">
+                            <i class="fas fa-shopping-bag"></i>
+                            <h3>Nenhum pedido encontrado</h3>
+                            <p>Você ainda não fez nenhuma compra.</p>
+                            <a href="index.html#store" class="btn btn-primary">Ver Loja VIP</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div class="tab-content" id="settings-tab">
+                    <div class="settings-section">
+                        <h2>Configurações da Conta</h2>
+                        
+                        <div class="setting-group">
+                            <h3>Informações Pessoais</h3>
+                            <div class="form-group">
+                                <label for="settings-nickname">Nickname</label>
+                                <input type="text" id="settings-nickname" class="form-input" placeholder="Seu nickname">
+                            </div>
+                            <div class="form-group">
+                                <label for="settings-email">E-mail</label>
+                                <input type="email" id="settings-email" class="form-input" placeholder="seu@email.com">
+                            </div>
+                        </div>
+
+                        <div class="setting-group">
+                            <h3>Segurança</h3>
+                            <div class="form-group">
+                                <label for="current-password">Senha Atual</label>
+                                <input type="password" id="current-password" class="form-input" placeholder="Senha atual">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">Nova Senha</label>
+                                <input type="password" id="new-password" class="form-input" placeholder="Nova senha">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-new-password">Confirmar Nova Senha</label>
+                                <input type="password" id="confirm-new-password" class="form-input" placeholder="Confirme a nova senha">
+                            </div>
+                        </div>
+
+                        <div class="setting-group">
+                            <h3>Preferências</h3>
+                            <div class="checkbox-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="email-notifications" checked>
+                                    <span class="checkmark"></span>
+                                    Receber notificações por e-mail
+                                </label>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" id="marketing-emails">
+                                    <span class="checkmark"></span>
+                                    Receber ofertas promocionais
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-actions">
+                            <button class="btn btn-primary" onclick="saveSettings()">
+                                <i class="fas fa-save"></i>
+                                Salvar Alterações
+                            </button>
+                            <button class="btn btn-outline" onclick="resetSettings()">
+                                <i class="fas fa-undo"></i>
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="danger-zone">
+                        <h3>Zona de Perigo</h3>
+                        <p>Ações irreversíveis que afetam permanentemente sua conta.</p>
+                        <button class="btn btn-accent" onclick="deleteAccount()">
+                            <i class="fas fa-trash"></i>
+                            Excluir Conta
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="edit-profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Editar Perfil</h2>
+                <button class="close-modal" onclick="closeEditModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-profile-form">
+                    <div class="form-group">
+                        <label for="edit-nickname">Nickname</label>
+                        <input type="text" id="edit-nickname" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-email">E-mail</label>
+                        <input type="email" id="edit-email" class="form-input" required>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Salvar
+                        </button>
+                        <button type="button" class="btn btn-outline" onclick="closeEditModal()">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
